@@ -186,6 +186,33 @@ html, body{margin:0;padding:0;}
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
+span.green{
+	color:#0fcf8c;
+}
+.menu{
+	 float:right;
+}
+.menu li{
+	display:inline-block;
+}
+ .menu li:first-child{
+   	margin-left:0;
+ }
+ .menu li a{
+  	display: block;
+	font-size: 0.85em;
+	padding: 30px 15px 20px 15px;
+	color: #EEE;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+ }
+.menu li a:hover ,.menu li.active a{
+	border-top:1px solid #0FCF8C;
+	color: #0FCF8C;
+ } 
+
 
 .clearfix:before,
 .clearfix:after {
