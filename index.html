@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html class="no-js"> 
     <head>
         <meta charset="utf-8">
@@ -14,7 +15,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<script type="text/javascript" src="language.js"></script>
-
+		<link rel="icon" href="image/logo.png">
     </head>
 
 <div class="row-fluid"><!-- .row-fluid [start] -->
@@ -53,37 +54,41 @@
 	
 	<div class="span3 left">
 		<div class="hero-unit info">
-			<h2 id="In2">New Note-RingNotes.</h2>
-			<span id="data2">Multi-finger operation may be required.</span>
+			<h2 id="In2">New Tale</h2>
+			<span id="data2">The Ring is kindness or malice?(Planning...)</span>
 		</div>
 	</div>
 	
 	<div class="span4 left">
 		<div class="hero-unit info">
-			<h2 id="In3">New Tale</h2>
-			<span id="data3">The Ring is kindness or malice?(Planning...)</span>
+			<h2 id="In3">New Note-RingNotes.</h2>
+			<span id="data3">Multi-finger operation may be required.</span>
 		</div>
 	</div>
 
 </div>
 <div class="menu">
-	 <li><img src="image/etc.png"width="50px"> </a></li>
-	<!--<a href="./static/store\\img\\福登.jpg" download="福登.jpg"><button class="down">下载</button></a>-->							
+	<div class="span12 text-center" style="margin-left:15%">
+	<a href="Runring.apk" download="Runring.apk"><input type="image" id="downimg" src="image/download.png" style="width:200px;height:60px" onclick="ondownload()"></button></a>							
+	</div>
+	<div class="span12 text-center" style="margin-left:15%;" id="version"></div>
+<div class="menu">
+		<div class="span8 text-left" style="margin-top:10%;">
+<!--		<a><img class="span2" src="image/logo.png"></a>-->
+<!--		<a><img class="span2" src="image/icon.png"></a>-->
+		<!--<a><img class="logo" src="image/logo.png" alt="logo" width="100px"></a>
+		<a><img class="logo" src="image/icon.png" alt="logo" width="100px"></a>
+		-->
+	</div>
 </div>	
 
-<div class="row-fluid">
-	<div class="span12 text-center" style="margin-top:4%;"><!-- .span12 [start] -->
-		<a><img class="span2 offset4" src="image/logo.png" alt="App store" style="margin-right:2%;"></a>
-		<a><img class="span2" src="image/icon.png" alt="Google play"></a>
-	</div>
-</div>
 
 
 <div class="row-fluid">
 	<div class="span12 text-center" style="margin-top:5%;">
-			<a class="social" href="#"><i class="icon-twitter icon-2x"></i></a>
+			<!--<a class="social" href="#"><i class="icon-twitter icon-2x"></i></a>
 			<a class="social" href="#"><i class="icon-google-plus icon-2x"></i></a>
-			<a class="social" href="#"><i class="icon-facebook icon-2x"></i></a>
+			<a class="social" href="#"><i class="icon-facebook icon-2x"></i></a>-->
 	</div>
 </div>
 
@@ -97,6 +102,10 @@
 
 <script>
 	
+setInterval(function() 
+{
+ondownloadup();
+}, 200); 
 	var lang_flag = 1;
 
 	function onetc() 
@@ -127,7 +136,21 @@
 //	  document.getElementById("createuid").value="";
 //	  xhttp.send();
     }  
+	function ondownload() 
+    {
+		document.getElementById("downimg").src= "image/downloadd.png";
+    }  
+	function ondownloadup() 
+    {
+    	document.getElementById("version").innerHTML= version[lang_flag];
+		document.getElementById("downimg").src= "image/download.png";
+    }  
 	
 </script>
 </body>
 </html>
+<!--
+Templates come from the Internet and are used for non-commercial purposes.
+模板来源于网络，使用于非商业用途
+-->
+	

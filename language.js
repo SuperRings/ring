@@ -8,6 +8,7 @@ var interest_two= ['新的Note-RingNotes', 'New Note-RingNotes.'];
 var data2= ['您需要新的操作方式才能完成', 'Multi-finger operation may be required.'];
 
 var interest_three= ['新的剧情', 'New Tale'];
-var data3= ['Ring的是善意的还是恶意的(正在规划)', ' The Ring is kindness or malice?(Planning...)'];
+var data3= ['Ring是善意的还是恶意的(正在规划...)', ' The Ring is kindness or malice?(Planning...)'];
 
+var version= ['V0.1', 'V0.1'];
 var datao= ['The Ring.', 'The ...'];
