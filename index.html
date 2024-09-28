@@ -152,21 +152,16 @@ ondownloadup();
 </body>
 </html>
 
-<html> 
-	<body onload="Test();"> 
-	</body> 
-</html>
 
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-function Test()
-{}
-</script>
+  <title>在页面加载时运行函数</title>
+  <script>
+    function Test() {
+    }
+    window.onload = Test;
+  </script>
 </head>
- 
-<body> 
-</body>
 </html>
-	
+
