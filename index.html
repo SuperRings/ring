@@ -72,10 +72,16 @@
 <div class="menu">
 	<div class="span12 text-center" style="margin-left:15%">
 	<a href="Runring.apk" download="Runring.apk"><input type="image" id="downimg" src="image/download.png" style="width:200px;height:60px" onclick="ondownload()"></button></a>							
+<!--	<button onclick="window.location.href='purchase.html'" >Account Support Addition</button>-->
+	<button onclick="window.location.href='purchase.html'" style="border: none; background-color: transparent; padding: 0;">  
+    <img src="image/UpgradeAccount.png" alt="Support Icon" style="vertical-align: middle; margin-right: 5px;">  
+<!--    Account Support Addition  -->
+</button>
 	</div>
 	<div class="span12 text-center" style="margin-left:15%;" id="version"></div>
 <div class="menu">
 		<div class="span8 text-left" style="margin-top:10%;">
+
 <!--		<a><img class="span2" src="image/logo.png"></a>-->
 <!--		<a><img class="span2" src="image/icon.png"></a>-->
 		<!--<a><img class="logo" src="image/logo.png" alt="logo" width="100px"></a>
@@ -153,17 +159,4 @@ ondownloadup();
 </html>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-  <title>在页面加载时运行函数</title>
-  <script>
-    function Test() {
-    }
-    window.onload = Test;
-  </script>
-</head>
-</html>
-
-<button onclick="setTimeout(Test, 3000)">试一试</button>
 
