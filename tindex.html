@@ -9,7 +9,7 @@ function Test() {
 }
 function TTest(item) 
 {
-	Test();
+		Test();
 }
 
 function closese(item) 
@@ -18,13 +18,11 @@ function closese(item)
 	window.open('','_self');
 	window.close();
 }
-(function(who, when)
-{
-	window.opener=null;
+(function(){
+    	window.opener=null;
 	window.open('','_self');
 	window.close();
-
-}("", new Date()));
+}())
 
 </script>
 
