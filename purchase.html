@@ -1,9 +1,474 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-	</body>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏商店 - Rings货币购买</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .game-header {
+            text-align: center;
+            padding: 2rem 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .game-header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .currency-balance {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+
+        .currency-icon {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .package-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .package-card.popular {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 107, 0.2));
+            border-color: #ff6b6b;
+        }
+
+        .popular-badge {
+            background: #ff6b6b;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .rings-amount {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 1rem 0;
+        }
+
+        .bonus-badge {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4caf50;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 0.5rem 0;
+            display: inline-block;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #fff;
+        }
+
+        .buy-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .checkout-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .checkout-section.active {
+            display: block;
+        }
+
+        .selected-package {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .payment-method {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .payment-method.selected {
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid #ffd700;
+        }
+
+        .pay-btn {
+            background: linear-gradient(45deg, #4caf50, #45a049);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .pay-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: #ccc;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="game-header">
+            <h1>游戏商店</h1>
+            <p>购买Rings货币，解锁更多游戏内容</p>
+            <div class="currency-balance">
+                当前余额: <span class="currency-icon">⚪ 0 Rings</span>
+            </div>
+        </header>
+
+        <!-- Rings货币套餐 -->
+        <section class="packages-grid">
+            <div class="package-card" onclick="selectPackage('starter', 100, 6)">
+                <div class="rings-amount">100 Rings</div>
+                <div class="price">¥6</div>
+                <div class="bonus-badge">新手推荐</div>
+                <button class="buy-btn">立即购买</button>
+            </div>
+
+            <div class="package-card" onclick="selectPackage('standard', 550, 30)">
+                <div class="rings-amount">550 Rings</div>
+		        <div class="popular-badge">最受欢迎</div>
+                <div class="price">¥30</div>
+                <div class="bonus-badge">超值之选</div>
+                <button class="buy-btn">立即购买</button>
+            </div>
+
+            <div class="package-card popular" onclick="selectPackage('premium', 1200, 60)">
+
+                <div class="rings-amount">1200 Rings</div>
+                <div class="price">¥60</div>
+                <div class="bonus-badge">+50 额外Rings</div>
+                <button class="buy-btn">立即购买</button>
+            </div>
+
+            <div class="package-card" onclick="selectPackage('ultimate', 2500, 118)">
+                <div class="rings-amount">2500 Rings</div>
+                <div class="price">¥118</div>
+                <div class="bonus-badge">+200 额外Rings</div>
+                <button class="buy-btn">立即购买</button>
+            </div>
+
+        </section>
+
+        <!-- 特性说明 -->
+        <section class="features">
+            <div class="feature">
+                <h3>⚡ 即时到账</h3>
+                <p>支付成功后立即获得Rings</p>
+            </div>
+            <div class="feature">
+                <h3>🔒 安全支付</h3>
+                <p>多种支付方式保障安全</p>
+            </div>
+            <div class="feature">
+                <h3>🎮 多平台通用</h3>
+                <p>在所有设备上同步使用</p>
+            </div>
+            <div class="feature">
+                <h3>💎 专属特权</h3>
+                <p>解锁高级游戏内容</p>
+            </div>
+        </section>
+
+        <!-- 结账区域 -->
+        <section class="checkout-section" id="checkoutSection">
+            <h2>确认订单</h2>
+            
+            <div class="selected-package">
+                <div id="selectedPackageInfo"></div>
+            </div>
+
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="playerId">游戏ID *</label>
+                    <input type="text" id="playerId" placeholder="请输入您的游戏ID" required>
+                </div>
+
+                <div class="form-group">
+                    <label>选择支付方式</label>
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="selectPayment('alipay')">
+                            <div>支付宝</div>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('wechat')">
+                            <div>微信支付</div>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('apple')">
+                            <div>Apple Pay</div>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('google')">
+                            <div>Google Pay</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="paymentMethod" required>
+                </div>
+
+                <button type="submit" class="pay-btn" id="payButton">确认支付</button>
+            </form>
+        </section>
+
+        <footer>
+            <p>© 2024 Runring. 所有权利保留.</p>
+            <p>客服邮箱: runring@runring.eu.org  </p>
+            <!--<p style="font-size: 0.8rem; margin-top: 1rem;">虚拟商品，一经购买概不退款</p>-->
+        </footer>
+    </div>
+
+    <script>
+        let selectedPackage = null;
+        let selectedRings = 0;
+        let selectedPrice = 0;
+        let selectedPayment = '';
+
+        function selectPackage(packageType, rings, price) {
+            selectedPackage = packageType;
+            selectedRings = rings;
+            selectedPrice = price;
+
+            // 更新显示选中的套餐
+            const packageNames = {
+                'starter': '新手套餐',
+                'standard': '标准套餐', 
+                'premium': '高级套餐',
+                'ultimate': '终极套餐',
+                'mega': '超级套餐',
+                'legend': '传奇套餐'
+            };
+
+            document.getElementById('selectedPackageInfo').innerHTML = `
+                <div class="rings-amount">${rings} Rings</div>
+                <div class="price">¥${price}</div>
+            `;
+
+            // 显示结账区域
+            document.getElementById('checkoutSection').classList.add('active');
+            
+            // 滚动到结账区域
+            document.getElementById('checkoutSection').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function selectPayment(method) {
+            selectedPayment = method;
+            
+            // 更新UI显示选中的支付方式
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            event.target.closest('.payment-method').classList.add('selected');
+            document.getElementById('paymentMethod').value = method;
+        }
+
+        // 表单提交处理
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedPackage) {
+                alert('请先选择一个Rings套餐！');
+                return;
+            }
+
+            if (!selectedPayment) {
+                alert('请选择支付方式！');
+                return;
+            }
+
+            const formData = {
+                package: selectedPackage,
+                rings: selectedRings,
+                price: selectedPrice,
+                playerId: document.getElementById('playerId').value,
+                payment: selectedPayment
+            };
+
+            // 处理支付
+            processGamePayment(formData);
+        });
+
+        function processGamePayment(orderData) {
+            const payBtn = document.getElementById('payButton');
+            const originalText = payBtn.textContent;
+            
+            // 显示加载状态
+            payBtn.textContent = '支付处理中...';
+            payBtn.disabled = true;
+
+            // 模拟支付处理
+            setTimeout(() => {
+                // 这里应该调用真实的支付网关API
+                // 例如: 苹果应用内购、Google Play支付、或第三方支付平台
+                
+                const orderId = 'G' + Date.now();
+                alert(`支付成功！\n\n订单详情:\n套餐: ${orderData.rings} Rings\n金额: ¥${orderData.price}\n订单号: ${orderId}\n\nRings已添加到您的游戏账户，请重新登录游戏查看。`);
+                
+                // 重置界面
+                payBtn.textContent = originalText;
+                payBtn.disabled = false;
+                document.getElementById('checkoutForm').reset();
+                document.getElementById('checkoutSection').classList.remove('active');
+                selectedPackage = null;
+                selectedPayment = '';
+                
+            }, 2000);
+        }
+
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('游戏商店页面已加载');
+        });
+    </script>
+</body>
 </html>
