@@ -747,7 +747,7 @@
             }, 2000);
         }
 
-		function createAlipayPayment(orderData) {
+		async function createAlipayPayment(orderData) {
 		    try {
 		        const response = await fetch('https://t8h5w.runring.eu.org/api/getalipayorder', {
 		            method: 'POST',
