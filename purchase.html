@@ -380,18 +380,18 @@
             <div class="user-header">
                 <div class="user-info">
                     <div>
-                        <h3>欢迎, <span id="userDisplayName">用户</span></h3>
+                        <h3>WELCOME, <span id="userDisplayName">用户</span></h3>
                         <div class="currency-balance">
-                            当前余额: <span class="currency-icon" id="userBalance">0 Rings</span>
+                          Rings: <span class="currency-icon" id="userBalance">0 Rings</span>
                         </div>
                     </div>
                 </div>
-                <button class="logout-btn" id="logoutBtn">退出登录</button>
+                <button class="logout-btn" id="logoutBtn">login out</button>
             </div>
 
             <header class="game-header">
-                <h1>游戏商店</h1>
-                <p>购买Rings货币，解锁更多游戏内容</p>
+                <h1>GetRings</h1>
+                <p>GetRings,Please recharge moderately.</p>
             </header>
 
             <!-- Rings货币套餐 -->
@@ -417,13 +417,7 @@
                     <div class="bonus-badge">+50 额外Rings</div>
                     <button class="buy-btn">立即购买</button>
                 </div>
-
-                <div class="package-card" onclick="selectPackage('ultimate', 2500, 118)">
-                    <div class="rings-amount">2500 Rings</div>
-                    <div class="price">¥118</div>
-                    <div class="bonus-badge">+200 额外Rings</div>
-                    <button class="buy-btn">立即购买</button>
-                </div>
+       
             </section>
 
             <!-- 特性说明 -->
@@ -498,7 +492,7 @@
         let selectedPrice = 0;
         let selectedPayment = '';
         const API_ENDPOINT = 'https://t8h5w.runring.eu.org/api/getrings';
-
+      	const API_ENDPOINT1 = 'https://t8h5w.runring.eu.org/api/getalipayorder';
         // 页面加载初始化
         document.addEventListener('DOMContentLoaded', function() {
             // 检查是否已登录
@@ -710,8 +704,8 @@
                 payment: selectedPayment,
                 email: currentUser.email
             };
-
-            processPayment(orderData);
+			createAlipayPayment(orderData);
+//          processPayment(orderData);
         }
 
         // 处理支付
@@ -753,6 +747,34 @@
             }, 2000);
         }
 
+		function createAlipayPayment(orderData) {
+		    try {
+		        const response = await fetch(API_ENDPOINT1, {
+		            method: 'POST',
+		            headers: {
+		                'Content-Type': 'application/json',
+		            },
+		            body: JSON.stringify({
+		                amount: 99.99, // 金额
+		                currency: 'cny', // 货币类型
+		                description: 'Rings Purchase', // 商品描述
+		                order_id: 'ORDER_123456', // 订单ID
+		                player_id: 'PLAYER_001' // 玩家ID
+		            })
+		        });
+		
+		        const result = await response.json();
+		        
+		        if (result.success) {
+		            // 跳转到Stripe支付页面
+		            window.location.href = result.paymentUrl;
+		        } else {
+		            console.error('Payment creation failed:', result.error);
+		        }
+		    } catch (error) {
+		        console.error('Error:', error);
+		    }
+		}
         // 在实际应用中，您需要实现这个函数来更新服务器上的Rings数量
         async function updateUserBalanceOnServer(orderData) {
             try {
