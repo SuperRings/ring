@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,7 @@
             padding: 20px;
         }
 
-        /* 登录页面样式 */
+        /* Login page styles */
         .login-container {
             width: 100%;
             max-width: 400px;
@@ -107,7 +107,7 @@
             text-decoration: none;
         }
 
-        /* 主商店页面样式 */
+        /* Main store page styles */
         .store-container {
             display: none;
         }
@@ -349,7 +349,7 @@
     </style>
 </head>
 <body>
-    <!-- 登录页面 -->
+    <!-- Login Page -->
     <div class="container">
         <div class="login-container" id="loginContainer">
             <div class="login-header">
@@ -359,13 +359,13 @@
             
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="email">email</label>
-                    <input type="email" id="email" placeholder="" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">password</label>
-                    <input type="password" id="password" placeholder="" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
                 </div>
                 
                 <button type="submit" class="login-btn">Log in</button>
@@ -374,81 +374,81 @@
         </div>
     </div>
 
-    <!-- 主商店页面 -->
+    <!-- Main Store Page -->
     <div class="container">
         <div class="store-container" id="storeContainer">
             <div class="user-header">
                 <div class="user-info">
                     <div>
-                        <h3>欢迎, <span id="userDisplayName">用户</span></h3>
+                        <h3>Welcome, <span id="userDisplayName">User</span></h3>
                         <div class="currency-balance">
-                            当前余额: <span class="currency-icon" id="userBalance">0 Rings</span>
+                            Current Balance: <span class="currency-icon" id="userBalance">0 Rings</span>
                         </div>
                     </div>
                 </div>
-                <button class="logout-btn" id="logoutBtn">退出登录</button>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
             </div>
 
             <header class="game-header">
-                <h1>游戏商店</h1>
-                <p>购买Rings货币，解锁更多游戏内容</p>
+                <h1>Game Store</h1>
+                <p>Purchase Rings currency to unlock more game content</p>
             </header>
 
-            <!-- Rings货币套餐 -->
+            <!-- Rings Currency Packages -->
             <section class="packages-grid">
                 <div class="package-card" onclick="selectPackage('starter', 100, 6)">
                     <div class="rings-amount">100 Rings</div>
                     <div class="price">¥6</div>
-                    <div class="bonus-badge">新手推荐</div>
-                    <button class="buy-btn">立即购买</button>
+                    <div class="bonus-badge">Beginner Recommended</div>
+                    <button class="buy-btn">Buy Now</button>
                 </div>
 
                 <div class="package-card" onclick="selectPackage('standard', 550, 30)">
                     <div class="rings-amount">550 Rings</div>
-                    <div class="popular-badge">最受欢迎</div>
+                    <div class="popular-badge">Most Popular</div>
                     <div class="price">¥30</div>
-                    <div class="bonus-badge">超值之选</div>
-                    <button class="buy-btn">立即购买</button>
+                    <div class="bonus-badge">Great Value</div>
+                    <button class="buy-btn">Buy Now</button>
                 </div>
 
                 <div class="package-card popular" onclick="selectPackage('premium', 1200, 60)">
                     <div class="rings-amount">1200 Rings</div>
                     <div class="price">¥60</div>
-                    <div class="bonus-badge">+50 额外Rings</div>
-                    <button class="buy-btn">立即购买</button>
+                    <div class="bonus-badge">+50 Bonus Rings</div>
+                    <button class="buy-btn">Buy Now</button>
                 </div>
 
                 <div class="package-card" onclick="selectPackage('ultimate', 2500, 118)">
                     <div class="rings-amount">2500 Rings</div>
                     <div class="price">¥118</div>
-                    <div class="bonus-badge">+200 额外Rings</div>
-                    <button class="buy-btn">立即购买</button>
+                    <div class="bonus-badge">+200 Bonus Rings</div>
+                    <button class="buy-btn">Buy Now</button>
                 </div>
             </section>
 
-            <!-- 特性说明 -->
+            <!-- Features Section -->
             <section class="features">
                 <div class="feature">
-                    <h3>即时到账</h3>
-                    <p>支付成功后立即获得Rings</p>
+                    <h3>Instant Delivery</h3>
+                    <p>Rings delivered immediately after payment</p>
                 </div>
                 <div class="feature">
-                    <h3>安全支付</h3>
-                    <p>多种支付方式保障安全</p>
+                    <h3>Secure Payment</h3>
+                    <p>Multiple secure payment methods</p>
                 </div>
                 <div class="feature">
-                    <h3>多平台通用</h3>
-                    <p>在所有设备上同步使用</p>
+                    <h3>Cross-Platform</h3>
+                    <p>Sync across all your devices</p>
                 </div>
                 <div class="feature">
-                    <h3>专属特权</h3>
-                    <p>解锁高级游戏内容</p>
+                    <h3>Exclusive Privileges</h3>
+                    <p>Unlock premium game content</p>
                 </div>
             </section>
 
-            <!-- 结账区域 -->
+            <!-- Checkout Section -->
             <section class="checkout-section" id="checkoutSection">
-                <h2>确认订单</h2>
+                <h2>Confirm Order</h2>
                 
                 <div class="selected-package">
                     <div id="selectedPackageInfo"></div>
@@ -456,18 +456,18 @@
 
                 <form id="checkoutForm">
                     <div class="form-group">
-                        <label for="playerId">游戏ID *</label>
-                        <input type="text" id="playerId" placeholder="请输入您的游戏ID" required>
+                        <label for="playerId">Game ID *</label>
+                        <input type="text" id="playerId" placeholder="Please enter your game ID" required>
                     </div>
 
                     <div class="form-group">
-                        <label>选择支付方式</label>
+                        <label>Select Payment Method</label>
                         <div class="payment-methods">
                             <div class="payment-method" onclick="selectPayment('alipay')">
-                                <div>支付宝</div>
+                                <div>Alipay</div>
                             </div>
                             <div class="payment-method" onclick="selectPayment('wechat')">
-                                <div>微信支付</div>
+                                <div>WeChat Pay</div>
                             </div>
                             <div class="payment-method" onclick="selectPayment('apple')">
                                 <div>Apple Pay</div>
@@ -479,19 +479,19 @@
                         <input type="hidden" id="paymentMethod" required>
                     </div>
 
-                    <button type="submit" class="pay-btn" id="payButton">确认支付</button>
+                    <button type="submit" class="pay-btn" id="payButton">Confirm Payment</button>
                 </form>
             </section>
 
             <footer>
-                <p>© 2024 Runring. 所有权利保留.</p>
-                <p>客服邮箱: runring@runring.eu.org</p>
+                <p>© 2024 Runring. All rights reserved.</p>
+                <p>Customer Service Email: runring@runring.eu.org</p>
             </footer>
         </div>
     </div>
 
     <script>
-        // 用户数据和登录状态管理
+        // User data and login status management
         let currentUser = null;
         let selectedPackage = null;
         let selectedRings = 0;
@@ -499,48 +499,48 @@
         let selectedPayment = '';
         const API_ENDPOINT = 'https://t8h5w.runring.eu.org/api/getrings';
 
-        // 页面加载初始化
+        // Page initialization
         document.addEventListener('DOMContentLoaded', function() {
-            // 检查是否已登录
+            // Check if user is already logged in
             const savedUser = localStorage.getItem('currentUser');
             if (savedUser) {
                 currentUser = JSON.parse(savedUser);
                 showStorePage();
-                updateUserBalance(); // 从API获取最新余额
+                updateUserBalance(); // Get latest balance from API
             }
 
-            // 登录表单提交
+            // Login form submission
             document.getElementById('loginForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 handleLogin();
             });
 
-            // 退出登录
+            // Logout
             document.getElementById('logoutBtn').addEventListener('click', function() {
                 handleLogout();
             });
 
-            // 结账表单提交
+            // Checkout form submission
             document.getElementById('checkoutForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 handleCheckout();
             });
         });
 
-        // 处理用户登录
+        // Handle user login
         async function handleLogin() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // 简单的表单验证
+            // Simple form validation
             if (!email || !password) {
-                alert('请输入邮箱和密码');
+                alert('Please enter email and password');
                 return;
             }
 
             const loginBtn = document.querySelector('#loginForm .login-btn');
             const originalText = loginBtn.textContent;
-            loginBtn.textContent = '登录中...';
+            loginBtn.textContent = 'Logging in...';
             loginBtn.disabled = true;
 
             try {
@@ -558,30 +558,30 @@
                 const data = await response.json();
 
                 if (!response.ok || !data.success) {
-                    throw new Error(data.message || '登录失败');
+                    throw new Error(data.message || 'Login failed');
                 }
 
-                // 登录成功
+                // Login successful
                 currentUser = {
                     email: data.email,
-                    displayName: data.email.split('@')[0], // 使用邮箱前缀作为显示名
+                    displayName: data.email.split('@')[0], // Use email prefix as display name
                     balance: parseInt(data.RINGS) || 0,
                     level: parseInt(data.LV) || 1
                 };
 
-                // 保存登录状态
+                // Save login status
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 showStorePage();
                 
             } catch (error) {
-                alert(error.message || '登录失败，请检查邮箱和密码');
+                alert(error.message || 'Login failed, please check your email and password');
             } finally {
                 loginBtn.textContent = originalText;
                 loginBtn.disabled = false;
             }
         }
 
-        // 更新用户余额
+        // Update user balance
         async function updateUserBalance() {
             if (!currentUser) return;
 
@@ -593,7 +593,7 @@
                     },
                     body: JSON.stringify({
                         email: currentUser.email,
-                        password: '' // 实际应用中这里应该保存token而不是密码
+                        password: '' // In real application, save token instead of password
                     })
                 });
 
@@ -605,38 +605,38 @@
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
                 }
             } catch (error) {
-                console.error('更新余额失败:', error);
+                console.error('Failed to update balance:', error);
             }
         }
 
-        // 处理退出登录
+        // Handle logout
         function handleLogout() {
             currentUser = null;
             localStorage.removeItem('currentUser');
             showLoginPage();
         }
 
-        // 显示登录页面
+        // Show login page
         function showLoginPage() {
             document.getElementById('loginContainer').classList.remove('hidden');
             document.getElementById('storeContainer').classList.remove('active');
             document.getElementById('loginForm').reset();
         }
 
-        // 显示商店页面
+        // Show store page
         function showStorePage() {
             document.getElementById('loginContainer').classList.add('hidden');
             document.getElementById('storeContainer').classList.add('active');
             
-            // 更新用户信息显示
+            // Update user info display
             document.getElementById('userDisplayName').textContent = currentUser.displayName;
             document.getElementById('userBalance').textContent = `${currentUser.balance} Rings`;
         }
 
-        // 选择套餐
+        // Select package
         function selectPackage(packageType, rings, price) {
             if (!currentUser) {
-                alert('请先登录！');
+                alert('Please log in first!');
                 return;
             }
 
@@ -644,12 +644,12 @@
             selectedRings = rings;
             selectedPrice = price;
 
-            // 更新显示选中的套餐
+            // Update display of selected package
             const packageNames = {
-                'starter': '新手套餐',
-                'standard': '标准套餐', 
-                'premium': '高级套餐',
-                'ultimate': '终极套餐'
+                'starter': 'Starter Package',
+                'standard': 'Standard Package', 
+                'premium': 'Premium Package',
+                'ultimate': 'Ultimate Package'
             };
 
             document.getElementById('selectedPackageInfo').innerHTML = `
@@ -658,20 +658,20 @@
                 <div class="price">¥${price}</div>
             `;
 
-            // 显示结账区域
+            // Show checkout section
             document.getElementById('checkoutSection').classList.add('active');
             
-            // 滚动到结账区域
+            // Scroll to checkout section
             document.getElementById('checkoutSection').scrollIntoView({ 
                 behavior: 'smooth' 
             });
         }
 
-        // 选择支付方式
+        // Select payment method
         function selectPayment(method) {
             selectedPayment = method;
             
-            // 更新UI显示选中的支付方式
+            // Update UI to show selected payment method
             document.querySelectorAll('.payment-method').forEach(el => {
                 el.classList.remove('selected');
             });
@@ -679,26 +679,26 @@
             document.getElementById('paymentMethod').value = method;
         }
 
-        // 处理结账
+        // Handle checkout
         function handleCheckout() {
             if (!currentUser) {
-                alert('请先登录！');
+                alert('Please log in first!');
                 return;
             }
 
             if (!selectedPackage) {
-                alert('请先选择一个Rings套餐！');
+                alert('Please select a Rings package first!');
                 return;
             }
 
             if (!selectedPayment) {
-                alert('请选择支付方式！');
+                alert('Please select a payment method!');
                 return;
             }
 
             const playerId = document.getElementById('playerId').value;
             if (!playerId) {
-                alert('请输入游戏ID！');
+                alert('Please enter your game ID!');
                 return;
             }
 
@@ -714,31 +714,31 @@
             processPayment(orderData);
         }
 
-        // 处理支付
+        // Process payment
         function processPayment(orderData) {
             const payBtn = document.getElementById('payButton');
             const originalText = payBtn.textContent;
             
-            // 显示加载状态
-            payBtn.textContent = '支付处理中...';
+            // Show loading state
+            payBtn.textContent = 'Processing payment...';
             payBtn.disabled = true;
 
-            // 模拟支付处理
+            // Simulate payment processing
             setTimeout(() => {
-                // 在实际应用中，这里应该调用真实的支付网关API
+                // In real application, this should call actual payment gateway API
                 const orderId = 'G' + Date.now();
                 
-                // 模拟更新用户余额
+                // Simulate updating user balance
                 currentUser.balance += orderData.rings;
                 document.getElementById('userBalance').textContent = `${currentUser.balance} Rings`;
                 
-                // 在实际应用中，这里应该调用API更新服务器上的Rings数量
+                // In real application, this should call API to update Rings on server
                 // updateUserBalanceOnServer(orderData);
                 
-                // 显示成功消息
-                alert(`支付成功！\n\n订单详情:\n套餐: ${orderData.rings} Rings\n金额: ¥${orderData.price}\n订单号: ${orderId}\n\nRings已添加到您的账户！`);
+                // Show success message
+                alert(`Payment successful!\n\nOrder Details:\nPackage: ${orderData.rings} Rings\nAmount: ¥${orderData.price}\nOrder ID: ${orderId}\n\nRings have been added to your account!`);
                 
-                // 重置结账界面
+                // Reset checkout interface
                 payBtn.textContent = originalText;
                 payBtn.disabled = false;
                 document.getElementById('checkoutForm').reset();
@@ -753,7 +753,7 @@
             }, 2000);
         }
 
-        // 在实际应用中，您需要实现这个函数来更新服务器上的Rings数量
+        // In real application, you need to implement this function to update Rings on server
         async function updateUserBalanceOnServer(orderData) {
             try {
                 const response = await fetch('https://api.runring.eu.org/api/updateRings', {
@@ -764,17 +764,17 @@
                     body: JSON.stringify({
                         email: orderData.email,
                         rings: orderData.rings,
-                        operation: 'add' // 可以是 'add' 或 'set'
+                        operation: 'add' // Can be 'add' or 'set'
                     })
                 });
 
                 const data = await response.json();
                 if (!response.ok || !data.success) {
-                    throw new Error(data.message || '更新余额失败');
+                    throw new Error(data.message || 'Failed to update balance');
                 }
             } catch (error) {
-                console.error('更新服务器余额失败:', error);
-                alert('更新余额失败: ' + error.message);
+                console.error('Failed to update server balance:', error);
+                alert('Failed to update balance: ' + error.message);
             }
         }
     </script>
