@@ -391,7 +391,7 @@
 
             <header class="game-header">
                 <h1>Get Rings</h1>
-                <p>Purchase Rings currency to unlock more game content</p>
+                <p>Buy a Ring to enrich the experience, please recharge it moderately.</p>
             </header>
 
             <!-- Rings Currency Packages -->
@@ -771,6 +771,34 @@
                 alert('Failed to update balance: ' + error.message);
             }
         }
+
+			async function createAlipayOrder(orderData) {
+			  try {
+			    const response = await fetch('https://t8h5w.runring.eu.org/api/getalipayorder', {
+			      method: 'POST',
+			      headers: {
+			        'Content-Type': 'application/json',
+			      },
+			      body: JSON.stringify({
+			        amount: 2000, // 20.00 美元（以分计）
+			        currency: 'usd',
+			        description: 'Rings Purchase',
+			        order_id: 'ORDER_123456'
+			      })
+			    });
+			
+			    const result = await response.json();
+			    
+			    if (result.success) {
+			      // 重定向到 Stripe 支付页面
+			      window.location.href = result.paymentUrl;
+			    } else {
+			      console.error('Payment creation failed:', result.error);
+			    }
+			  } catch (error) {
+			    console.error('Error:', error);
+			  }
+			}
     </script>
 </body>
 </html>
