@@ -401,7 +401,7 @@
 
             <!-- Rings货币套餐 -->
             <section class="packages-grid">
-                <div class="package-card" onclick="selectPackage('starter', 100, 6)">
+                <div class="package-card" onclick="selectPackage('starter', 200, 12)">
                     <div class="rings-amount">200 Rings</div>
                     <div class="price">¥12</div>
                     <div class="bonus-badge">新手推荐</div>
@@ -472,7 +472,7 @@
         let selectedPrice = 0;
         let selectedPayment = '';
         const API_ENDPOINT = 'https://t8h5w.runring.eu.org/api/getrings';
-
+        
         // 页面加载初始化
         document.addEventListener('DOMContentLoaded', function() {
             // 检查是否已登录
@@ -662,41 +662,52 @@
 
         // 处理结账
         function handleCheckout() {
-            if (!currentUser) {
-                alert('请先登录！');
-                return;
+        	try{
+	        	const payButton = document.getElementById('payButton');
+				payButton.disabled = true;
+				payButton.textContent = '支付中...';
+	            if (!currentUser) {
+	                alert('请先登录！');
+	                return;
+	            }
+	
+	            if (!selectedPackage) {
+	                alert('请先选择一个Rings套餐！');
+	                return;
+	            }
+	
+	            if (!selectedPayment) {
+	                alert('请选择支付方式！');
+	                return;
+	            }
+	
+	            const rid = document.getElementById('rid').value;
+	            if (!rid) {
+	                alert('RID不能为空！');
+	                return;
+	            }
+	
+	            const orderData = {
+	                package: selectedPackage,
+	                rings: selectedRings,
+	                price: selectedPrice,
+	                rid: rid,
+	                payment: selectedPayment,
+	                email: currentUser.email
+	            };
+	
+	            // 根据选择的支付方式调用不同的支付函数
+	            if (selectedPayment === 'alipay') {
+	                createAlipayPayment(orderData);
+	            } else if (selectedPayment === 'bank') {
+	                createBankPayment(orderData);
+	            }
             }
-
-            if (!selectedPackage) {
-                alert('请先选择一个Rings套餐！');
-                return;
-            }
-
-            if (!selectedPayment) {
-                alert('请选择支付方式！');
-                return;
-            }
-
-            const rid = document.getElementById('rid').value;
-            if (!rid) {
-                alert('RID不能为空！');
-                return;
-            }
-
-            const orderData = {
-                package: selectedPackage,
-                rings: selectedRings,
-                price: selectedPrice,
-                rid: rid,
-                payment: selectedPayment,
-                email: currentUser.email
-            };
-
-            // 根据选择的支付方式调用不同的支付函数
-            if (selectedPayment === 'alipay') {
-                createAlipayPayment(orderData);
-            } else if (selectedPayment === 'bank') {
-                createBankPayment(orderData);
+        	catch(error)
+            {
+				alert('支付失败，请重试: ' + error.message);
+				payButton.disabled = false;
+				payButton.textContent = '确认支付'; 
             }
         }
 
@@ -750,9 +761,7 @@
                 });
 
                 const result = await response.json();
-                
                 if (result.success) {
-                    // 跳转到银行卡支付页面
                     window.location.href = result.paymentUrl;
                 } else {
                     console.error('银行卡支付创建失败:', result.error);
