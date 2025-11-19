@@ -727,7 +727,8 @@
                         currency: 'cny',
                         description: `购买 ${orderData.rings} Rings`,
                         order_id: 'ORDER_' + Date.now(),
-                        rid: orderData.rid
+                        rid: orderData.rid,
+                        payment_method: 'alipay'
                     })
                 });
 
@@ -759,7 +760,8 @@
                         currency: 'cny',
                         description: `购买 ${orderData.rings} Rings`,
                         order_id: 'ORDER_' + Date.now(),
-                        rid: orderData.rid
+                        rid: orderData.rid,
+                        payment_method: 'bank'
                     })
                 });
 
