@@ -416,7 +416,7 @@
                     <button class="buy-btn">立即购买</button>
                 </div>
 
-                <div class="package-card popular" onclick="selectPackage('premium', 1200, 60)">
+				<div class="package-card" onclick="selectPackage('premium', 1200, 60)">
                     <div class="rings-amount">1200 Rings</div>
                     <div class="price">¥60</div>
                     <div class="bonus-badge">+50 额外Rings</div>
@@ -617,6 +617,11 @@
                 return;
             }
 
+		    document.querySelectorAll('.package-card').forEach(card => {
+		        card.classList.remove('selected', 'popular');
+		    });
+			event.currentTarget.classList.add('selected');
+            
             selectedPackage = packageType;
             selectedRings = rings;
             selectedPrice = price;
