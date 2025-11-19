@@ -402,8 +402,8 @@
             <!-- Rings货币套餐 -->
             <section class="packages-grid">
                 <div class="package-card" onclick="selectPackage('starter', 100, 6)">
-                    <div class="rings-amount">100 Rings</div>
-                    <div class="price">¥6</div>
+                    <div class="rings-amount">200 Rings</div>
+                    <div class="price">¥12</div>
                     <div class="bonus-badge">新手推荐</div>
                     <button class="buy-btn">立即购买</button>
                 </div>
@@ -425,29 +425,9 @@
        
             </section>
 
-            <!-- 特性说明 -->
-            <section class="features">
-                <div class="feature">
-                    <h3>即时到账</h3>
-                    <p>支付成功后立即获得Rings</p>
-                </div>
-                <div class="feature">
-                    <h3>安全支付</h3>
-                    <p>多种支付方式保障安全</p>
-                </div>
-                <div class="feature">
-                    <h3>多平台通用</h3>
-                    <p>在所有设备上同步使用</p>
-                </div>
-                <div class="feature">
-                    <h3>专属特权</h3>
-                    <p>解锁高级游戏内容</p>
-                </div>
-            </section>
-
-            <!-- 结账区域 -->
+            <!-- 结账 -->
             <section class="checkout-section" id="checkoutSection">
-                <h2>确认订单</h2>
+                <h2>Confirm order</h2>
                 
                 <div class="selected-package">
                     <div id="selectedPackageInfo"></div>
@@ -456,17 +436,17 @@
                 <form id="checkoutForm">
                     <div class="form-group">
                         <label for="rid">RID *</label>
-                        <input type="text" id="rid" placeholder="RID将自动填充为您的邮箱" disabled>
+                        <input type="text" id="rid" placeholder="RID will be automatically filled into your mailbox." disabled>
                     </div>
 
                     <div class="form-group">
-                        <label>选择支付方式</label>
+                        <label>Select payment method</label>
                         <div class="payment-methods">
                             <div class="payment-method" onclick="selectPayment('alipay')">
-                                <div>支付宝</div>
+                                <div>Alipay</div>
                             </div>
                             <div class="payment-method" onclick="selectPayment('bank')">
-                                <div>银行卡</div>
+                                <div>Card</div>
                             </div>
                         </div>
                         <input type="hidden" id="paymentMethod" required>
@@ -477,7 +457,8 @@
             </section>
 
             <footer>
-                <p>© 2024 Runring. 所有权利保留.</p>
+			    <p>温馨提示:请保证安全网络并确认周围环境再支付</p>
+                <p>© 2024 Runring@RingStudio. 所有权利保留.</p>
                 <p>客服邮箱: runring@runring.eu.org</p>
             </footer>
         </div>
@@ -586,7 +567,7 @@
                     },
                     body: JSON.stringify({
                         email: currentUser.email,
-                        password: '' // 实际应用中这里应该保存token而不是密码
+                        password: '' 
                     })
                 });
 
