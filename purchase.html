@@ -705,7 +705,8 @@
                         description: `Buy ${orderData.rings} Rings`,
                         order_id: 'ORDER_' + Date.now(),
                         rid: orderData.rid,
-	      				email:orderData.email
+	      				email:orderData.email,
+                        section:orderData.rings
                     })
                 });
 
@@ -742,7 +743,8 @@
                         description: `购买 ${orderData.rings} Rings`,
                         order_id: 'ORDER_' + Date.now(),
                         rid: orderData.rid,
-                        email:orderData.email
+                        email:orderData.email,
+                        section:orderData.rings
                     })
                 });
 
