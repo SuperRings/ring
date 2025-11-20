@@ -389,8 +389,8 @@
                         <div class="currency-balance">
                           Rings: <span class="currency-icon" id="userBalance">0 Rings</span>
                         </div>
+                        <p>If Rings is not updated, please wait for a while and log in again.</p>
                     </div>
-				<button class="submit" id="login-btn">update</button>
                 </div>
                 <button class="logout-btn" id="logoutBtn">Login out</button>
             </div>
@@ -633,11 +633,9 @@
             });
         }
 
-
         function selectPayment(method) {
             selectedPayment = method;
-            
-            // 更新UI显示选中的支付方式
+
             document.querySelectorAll('.payment-method').forEach(el => {
                 el.classList.remove('selected');
             });
@@ -662,7 +660,7 @@
             }
 
             if (!selectedPayment) {
-                alert('请选择支付方式！');
+                alert('Please select the payment method.！');
                 return;
             }
 
@@ -769,28 +767,6 @@
             }
         }
 
-        async function updateUserBalanceOnServer(orderData) {
-            try {
-                const response = await fetch('https://api.runring.eu.org/api/updateRings', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        email: orderData.email,
-                        rings: orderData.rings,
-                        operation: 'add'
-                    })
-                });
-
-                const data = await response.json();
-                if (!response.ok || !data.success) {
-                    throw new Error(data.message || 'Updating Rings failed');
-                }
-            } catch (error) {
-                alert('Updating Rings failed.: ' + error.message);
-            }
-        }
     </script>
 </body>
 </html>
