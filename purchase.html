@@ -441,13 +441,12 @@
 
                     <div class="form-group">
                         <label>Select payment method</label>
-                        <div class="payment-methods">
-                            <div class="payment-method" onclick="selectPayment('alipay')">
-                                <div>Alipay</div>
-                            </div>
-                            <div class="payment-method" onclick="selectPayment('bank')">
-                                <div>Card</div>
-                            </div>
+						<div class="payment-method" onclick="selectPayment('alipay', event)">
+						    <div>Alipay</div>
+						</div>
+						<div class="payment-method" onclick="selectPayment('bank', event)">
+						    <div>Card</div>
+						</div>
                         </div>
                         <input type="hidden" id="paymentMethod" required>
                     </div>
@@ -631,16 +630,15 @@
         }
 
 
-        function selectPayment(method) {
-            selectedPayment = method;
-            
-            // 更新UI显示选中的支付方式
-            document.querySelectorAll('.payment-method').forEach(el => {
-                el.classList.remove('selected');
-            });
-            event.currentTarget.classList.add('selected');
-            document.getElementById('paymentMethod').value = method;
-        }
+		function selectPayment(method, event) {
+		    selectedPayment = method;
+		    
+		    document.querySelectorAll('.payment-method').forEach(el => {
+		        el.classList.remove('selected');
+		    });
+		    event.currentTarget.classList.add('selected');
+		    document.getElementById('paymentMethod').value = method;
+		}
 
         // 结账
         function handleCheckout() {
