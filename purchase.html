@@ -390,6 +390,7 @@
                           Rings: <span class="currency-icon" id="userBalance">0 Rings</span>
                         </div>
                     </div>
+				<button class="submit" id="login-btn">update</button>
                 </div>
                 <button class="logout-btn" id="logoutBtn">Login out</button>
             </div>
@@ -494,7 +495,10 @@
                 e.preventDefault();
                 handleCheckout();
             });
-        });
+            document.getElementById('checkoutForm').addEventListener('click', function(e) {
+                e.preventDefault();
+                handleCheckout();
+            });        });
 
         async function handleLogin() {
             const email = document.getElementById('email').value;
