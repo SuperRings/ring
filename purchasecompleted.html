@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment completed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .success-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .success-message h1 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        .success-message p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .countdown {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .countdown-number {
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .manual-link {
+            margin-top: 20px;
+        }
+        .manual-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .manual-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <div class="success-message">
+            <h1>Payment completed！</h1>
+            <p>Thank you for your purchase. Rings has been added to your account.</p>
+        </div>
+        <div class="countdown">
+            <p>The page will be displayed at <span id="countdownNumber" class="countdown-number">5</span> automatic jump after seconds... <br>You may need to log in again to see Rings' changes.</p>
+        </div>
+        <div class="manual-link">
+            <a href="https://runring.eu.org/purchase" id="manualLink">If not, please click here.</a>
+        </div>
+    </div>
+
+    <script>
+        let seconds = 5;
+        const countdownElement = document.getElementById('countdownNumber');
+        const countdownInterval = setInterval(() => {
+            seconds--;
+            countdownElement.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = 'https://runring.eu.org/purchase';
+            }
+        }, 1000);
+
+        document.getElementById('manualLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            clearInterval(countdownInterval);
+            window.location.href = this.href;
+        });
+    </script>
+</body>
+</html>
